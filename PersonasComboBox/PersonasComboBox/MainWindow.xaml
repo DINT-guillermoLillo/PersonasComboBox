@@ -6,21 +6,22 @@
         xmlns:local="clr-namespace:PersonasComboBox"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <StackPanel>
-        <ComboBox HorizontalAlignment="Center" Width="100" Margin="12pt">
-            <ComboBox.Items>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding }"></Image>
-                        <TextBlock Text="{Binding Nombre}"></TextBlock>
-                        <Image Source="{Binding Sexo}"></Image>
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.Items>
-        </ComboBox>
+    <Window.Resources>
+        <DataTemplate x:Key="caracPersonas">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding Foto}"></Image>
+                <TextBlock Text="{Binding Nombre}"></TextBlock>
+                <Image Source="{Binding Sexo}"></Image>
+            </StackPanel>
+        </DataTemplate>
+
+    </Window.Resources>
+    
+    <StackPanel x:Name="mainStackPanel">
+        <ComboBox HorizontalAlignment="Center" Width="100" Margin="12pt" ItemsSource="{Binding}" ItemTemplate="{StaticResource caracPersonas}"/>
         <TextBlock>
             <Run Text="El identificador del usuario seleccionado es:"/>
-            <Run Text="{Binding id}"/>
+            <Run Text="{Binding Id}"/>
         </TextBlock>
     </StackPanel>
 </Window>

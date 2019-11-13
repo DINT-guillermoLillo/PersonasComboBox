@@ -1,16 +1,18 @@
-﻿public class Persona
+﻿using System.Collections.ObjectModel;
+
+public class Persona
 { 
     public int Id { get; set; }
     public string Nombre { get; set; }
     public string Foto { get; set; }
-    public string Sexo { get; set; }
+    public string Sexo{ get; set; }
 
     public Persona(int id, string nombre, string foto, string sexo)
     {
-        _id = id;
-        _nombre = nombre;
-        _foto = foto;
-        _sexo = sexo;
+        Id = id;
+        Nombre = nombre;
+        Foto = foto;
+        Sexo = sexo;
     }
 
     public static ObservableCollection<Persona> GetPersonas()
