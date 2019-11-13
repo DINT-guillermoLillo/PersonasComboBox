@@ -6,22 +6,25 @@
         xmlns:local="clr-namespace:PersonasComboBox"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    
     <Window.Resources>
+        <local:BooleanConverter x:Key="booleanConverter"/>
+
         <DataTemplate x:Key="caracPersonas">
             <StackPanel Orientation="Horizontal">
-                <Image Source="{Binding Foto}"></Image>
-                <TextBlock Text="{Binding Nombre}"></TextBlock>
-                <Image Source="{Binding Sexo}"></Image>
+                <Image Source="{Binding Foto}"  Width="50" Height="Auto" RenderTransformOrigin="1,0"/>
+                <TextBlock Text="{Binding Nombre}"  Margin="12" ></TextBlock>
+                <Image Source="{Binding Sexo , Converter={StaticResource booleanConverter}}" Width="25" Height="Auto"></Image>
             </StackPanel>
         </DataTemplate>
 
     </Window.Resources>
     
     <StackPanel x:Name="mainStackPanel">
-        <ComboBox HorizontalAlignment="Center" Width="100" Margin="12pt" ItemsSource="{Binding}" ItemTemplate="{StaticResource caracPersonas}"/>
-        <TextBlock>
-            <Run Text="El identificador del usuario seleccionado es:"/>
-            <Run Text="{Binding Id}"/>
+        <ComboBox x:Name="listaComboBox" HorizontalAlignment="Center" MinWidth="100" Width="Auto" Margin="12pt" ItemsSource="{Binding}" ItemTemplate="{StaticResource caracPersonas}" SelectedValuePath="Id"/>
+        <TextBlock  >
+            <Run Text="El identificador del usuario seleccionado es: "/>
+            <Run Text="{Binding ElementName=listaComboBox, Path=SelectedValue}"/>
         </TextBlock>
     </StackPanel>
 </Window>
